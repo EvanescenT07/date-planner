@@ -1,0 +1,29 @@
+[     166ms] [ERROR] Failed to load resource: the server responded with a status of 500 (Internal Server Error) @ http://localhost:3000/:0
+[     686ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ webpack-internal:///(pages-dir-browser)/./node_modules/react-dom/cjs/react-dom-client.development.js:31148
+[     871ms] Error: Cannot find module './vendor-chunks/motion-dom.js'
+Require stack:
+- D:\Documents\Fikar\.Project\date-website\.next\server\webpack-runtime.js
+- D:\Documents\Fikar\.Project\date-website\.next\server\pages\_document.js
+- D:\Documents\Fikar\.Project\date-website\node_modules\next\dist\server\require.js
+- D:\Documents\Fikar\.Project\date-website\node_modules\next\dist\server\load-components.js
+- D:\Documents\Fikar\.Project\date-website\node_modules\next\dist\build\utils.js
+- D:\Documents\Fikar\.Project\date-website\node_modules\next\dist\build\swc\options.js
+- D:\Documents\Fikar\.Project\date-website\node_modules\next\dist\build\swc\index.js
+- D:\Documents\Fikar\.Project\date-website\node_modules\next\dist\build\next-config-ts\transpile-config.js
+- D:\Documents\Fikar\.Project\date-website\node_modules\next\dist\server\config.js
+- D:\Documents\Fikar\.Project\date-website\node_modules\next\dist\cli\next-test.js
+- D:\Documents\Fikar\.Project\date-website\node_modules\next\dist\bin\next
+    at Function.<anonymous> (node:internal/modules/cjs/loader:1225:15)
+    at <unknown> (file://D:\Documents\Fikar\.Project\date-website\node_modules\next\dist\server\require-hook.js:57:36)
+    at Function._load (node:internal/modules/cjs/loader:1055:27)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:220:24)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1311:12)
+    at mod.require (file://D:\Documents\Fikar\.Project\date-website\node_modules\next\dist\server\require-hook.js:68:28)
+    at require (node:internal/modules/helpers:136:16)
+    at __webpack_require__.f.require (file://D:\Documents\Fikar\.Project\date-website\.next\server\webpack-runtime.js:190:28)
+    at <unknown> (file://D:\Documents\Fikar\.Project\date-website\.next\server\webpack-runtime.js:103:40)
+[     859ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://localhost:3000/_next/static/development/_devMiddlewareManifest.json:0
+[     861ms] [LOG] Failed to fetch _devMiddlewareManifest SyntaxError: Unexpected token 'N', "Not Found" is not valid JSON @ webpack-internal:///(pages-dir-browser)/./node_modules/next/dist/client/page-loader.js:58
+[     949ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://localhost:3000/favicon.ico:0
+[    1007ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://localhost:3000/__nextjs_original-stack-frames:0

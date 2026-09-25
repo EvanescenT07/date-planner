@@ -1,0 +1,100 @@
+@import "tailwindcss";
+
+:root {
+  --background: #FFF8FA;
+  --surface: #FFFFFF;
+  --primary: #E78FB3;
+  --primary-hover: #D875A0;
+  --secondary: #F8D8E8;
+  --accent: #FFD6E7;
+  --text-primary: #40323C;
+  --text-secondary: #7B6A73;
+  --border: #F3DCE7;
+  --success: #7BC9A8;
+}
+
+@theme {
+  --color-background: var(--background);
+  --color-surface: var(--surface);
+  --color-primary: var(--primary);
+  --color-primary-hover: var(--primary-hover);
+  --color-secondary: var(--secondary);
+  --color-accent: var(--accent);
+  --color-text-primary: var(--text-primary);
+  --color-text-secondary: var(--text-secondary);
+  --color-border: var(--border);
+  --color-success: var(--success);
+
+  --font-serif: var(--font-playfair), "Playfair Display", Georgia, serif;
+  --font-sans: var(--font-inter), "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+
+  --radius-card: 32px;
+  --radius-input: 20px;
+  --radius-pill: 9999px;
+
+  --shadow-romantic: 0 20px 60px rgba(231, 143, 179, 0.12);
+  --shadow-romantic-lg: 0 30px 80px rgba(231, 143, 179, 0.2);
+  --shadow-romantic-sm: 0 10px 30px rgba(231, 143, 179, 0.08);
+}
+
+/* Base resets & typography */
+html {
+  scroll-behavior: smooth;
+  font-family: var(--font-sans);
+  background-color: var(--background);
+  color: var(--text-primary);
+}
+
+body {
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  background-color: var(--background);
+  color: var(--text-primary);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Glassmorphism helpers */
+.glassmorphism {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(243, 220, 231, 0.7);
+}
+
+.glassmorphism-subtle {
+  background: rgba(255, 255, 255, 0.65);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(243, 220, 231, 0.5);
+}
+
+/* Equalizer animations */
+@keyframes eq-bounce-1 {
+  0%, 100% { height: 4px; }
+  50% { height: 16px; }
+}
+
+@keyframes eq-bounce-2 {
+  0%, 100% { height: 14px; }
+  50% { height: 6px; }
+}
+
+@keyframes eq-bounce-3 {
+  0%, 100% { height: 8px; }
+  50% { height: 18px; }
+}
+
+.animate-eq-1 {
+  animation: eq-bounce-1 0.8s ease-in-out infinite;
+}
+
+.animate-eq-2 {
+  animation: eq-bounce-2 0.7s ease-in-out infinite 0.15s;
+}
+
+.animate-eq-3 {
+  animation: eq-bounce-3 0.9s ease-in-out infinite 0.3s;
+}

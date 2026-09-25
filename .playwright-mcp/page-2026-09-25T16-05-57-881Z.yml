@@ -1,0 +1,28 @@
+- generic [ref=e1]:
+  - generic [ref=e2]:
+    - banner [ref=e3]:
+      - generic [ref=e4]:
+        - generic [ref=e5]: A Special Invitation
+        - generic [ref=e6]: 🌸
+    - main [ref=e7]:
+      - generic [ref=e12]:
+        - generic [ref=e13]:
+          - generic [ref=e14]: 💌
+          - heading "Hi, before we plan our date..." [level=2] [ref=e15]
+          - paragraph [ref=e16]: May I know who I'm planning this special moment with?
+        - generic [ref=e18]:
+          - generic [ref=e19]: Your Lovely Name
+          - textbox "Your Lovely Name" [active] [ref=e21]:
+            - /placeholder: e.g. Sarah
+        - button "Let's Start" [ref=e22] [cursor=pointer]
+    - contentinfo [ref=e27]:
+      - paragraph [ref=e28]:
+        - generic [ref=e29]: Handcrafted with love for an unforgettable evening
+        - generic [ref=e30]: ❤️
+    - generic [ref=e32]:
+      - button "Play background music" [ref=e33] [cursor=pointer]
+      - generic [ref=e37]:
+        - generic [ref=e38]: Romantic Melodies
+        - generic [ref=e43]: Paused
+      - button "Expand volume settings" [ref=e46] [cursor=pointer]
+  - alert [ref=e49]

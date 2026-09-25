@@ -1,0 +1,13 @@
+- generic [ref=e2]:
+  - banner [ref=e24]:
+    - generic [ref=e25]: A Special Invitation🌸
+  - main [ref=e26]:
+    - generic [ref=e27]: 🌸Preparing your invitation...
+  - contentinfo [ref=e29]:
+    - paragraph [ref=e30]: Handcrafted with love for an unforgettable evening❤️
+  - generic [ref=e32]:
+    - button "Play background music" [ref=e33]
+    - generic [ref=e37]:
+      - generic [ref=e38]: Romantic Melodies
+      - text: Paused
+    - button "Expand volume settings" [ref=e43]
