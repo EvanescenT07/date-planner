@@ -13,6 +13,7 @@ import { FoodStep } from "./FoodStep";
 import { ActivityStep } from "./ActivityStep";
 import { NoteStep } from "./NoteStep";
 import { ConfirmationStep } from "./ConfirmationStep";
+import { IntroDecisionStep } from "./IntroDecisionStep";
 
 /**
  * Main orchestrator for the multi-step romantic date planner wizard.
@@ -20,6 +21,8 @@ import { ConfirmationStep } from "./ConfirmationStep";
  */
 export const PlannerContainer: React.FC = () => {
   const {
+    introAccepted,
+    acceptIntro,
     step,
     data,
     isHydrated,
@@ -46,8 +49,8 @@ export const PlannerContainer: React.FC = () => {
 
   return (
     <div className="w-full flex flex-col items-center">
-      {/* Progress hearts displayed for planning steps 1 through 5 */}
-      {step >= 1 && step <= 5 && (
+      {/* Progress hearts displayed for planning steps 1 through 5 once intro is accepted */}
+      {introAccepted && step >= 1 && step <= 5 && (
         <div className="mb-4">
           <ProgressHearts currentStep={step} totalSteps={5} />
         </div>
@@ -56,15 +59,21 @@ export const PlannerContainer: React.FC = () => {
       {/* Main interactive floating card */}
       <FloatingCard>
         <AnimatePresence mode="wait">
-          {step === 0 && (
-            <StepWrapper stepKey={0}>
-              <WelcomeStep
-                name={data.name}
-                onUpdateName={(name) => updateField("name", name)}
-                onNext={next}
-              />
+          {!introAccepted ? (
+            <StepWrapper stepKey="intro-decision">
+              <IntroDecisionStep onAccept={acceptIntro} />
             </StepWrapper>
-          )}
+          ) : (
+            <>
+              {step === 0 && (
+                <StepWrapper stepKey={0}>
+                  <WelcomeStep
+                    name={data.name}
+                    onUpdateName={(name) => updateField("name", name)}
+                    onNext={next}
+                  />
+                </StepWrapper>
+              )}
 
           {step === 1 && (
             <StepWrapper stepKey={1}>
@@ -121,14 +130,16 @@ export const PlannerContainer: React.FC = () => {
             </StepWrapper>
           )}
 
-          {step === 6 && (
-            <StepWrapper stepKey={6}>
-              <ConfirmationStep
-                data={data}
-                onReset={reset}
-                onEditStep={(targetStep) => goToStep(targetStep)}
-              />
-            </StepWrapper>
+              {step === 6 && (
+                <StepWrapper stepKey={6}>
+                  <ConfirmationStep
+                    data={data}
+                    onReset={reset}
+                    onEditStep={(targetStep) => goToStep(targetStep)}
+                  />
+                </StepWrapper>
+              )}
+            </>
           )}
         </AnimatePresence>
       </FloatingCard>

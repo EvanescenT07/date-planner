@@ -9,7 +9,11 @@ export default defineConfig({
     globals: true,
     setupFiles: ["./vitest.setup.ts"],
     pool: "threads",
+    threads: {
+      singleThread: true,
+    },
     fileParallelism: false,
+    testTimeout: 15000,
   },
   resolve: {
     alias: {

@@ -5,15 +5,18 @@ import { PlannerData, PlannerStep } from "@/types/planner";
 import { INITIAL_PLANNER_DATA, SESSION_STORAGE_KEY } from "@/lib/constants";
 
 interface StoredSession {
+  introAccepted?: boolean;
   step: PlannerStep;
   data: PlannerData;
 }
 
 export interface UseDatePlannerReturn {
+  introAccepted: boolean;
   step: PlannerStep;
   data: PlannerData;
   isHydrated: boolean;
   canProceed: boolean;
+  acceptIntro: () => void;
   next: () => void;
   back: () => void;
   goToStep: (targetStep: PlannerStep) => void;
@@ -24,9 +27,10 @@ export interface UseDatePlannerReturn {
 /**
  * Reusable hook managing the multi-step romantic date planner state.
  * Implements session storage persistence, URL query pre-filling,
- * and step validation rules.
+ * intro decision gating, and step validation rules.
  */
 export function useDatePlanner(): UseDatePlannerReturn {
+  const [introAccepted, setIntroAccepted] = useState<boolean>(false);
   const [step, setStep] = useState<PlannerStep>(0);
   const [data, setData] = useState<PlannerData>(INITIAL_PLANNER_DATA);
   const [isHydrated, setIsHydrated] = useState(false);
@@ -43,6 +47,7 @@ export function useDatePlanner(): UseDatePlannerReturn {
       if (rawStored) {
         const parsed = JSON.parse(rawStored) as StoredSession;
         if (parsed && typeof parsed.step === "number" && parsed.data) {
+          setIntroAccepted(Boolean(parsed.introAccepted));
           setStep(parsed.step);
           setData({
             ...parsed.data,
@@ -65,23 +70,27 @@ export function useDatePlanner(): UseDatePlannerReturn {
     }
   }, []);
 
-  // Persist state to sessionStorage whenever step or data updates
+  // Persist state to sessionStorage whenever introAccepted, step or data updates
   useEffect(() => {
     if (!isHydrated) return;
 
     try {
-      if (step === 0 && !data.name.trim()) {
+      if (!introAccepted && step === 0 && !data.name.trim()) {
         window.sessionStorage.removeItem(SESSION_STORAGE_KEY);
         return;
       }
-      const sessionPayload: StoredSession = { step, data };
+      const sessionPayload: StoredSession = { introAccepted, step, data };
       window.sessionStorage.setItem(SESSION_STORAGE_KEY, JSON.stringify(sessionPayload));
     } catch (err) {
       if (err instanceof DOMException) {
         console.warn("Could not persist planner session to storage:", err.message);
       }
     }
-  }, [step, data, isHydrated]);
+  }, [introAccepted, step, data, isHydrated]);
+
+  const acceptIntro = useCallback(() => {
+    setIntroAccepted(true);
+  }, []);
 
   const updateField = useCallback(
     <K extends keyof PlannerData>(field: K, value: PlannerData[K]) => {
@@ -142,6 +151,7 @@ export function useDatePlanner(): UseDatePlannerReturn {
   const reset = useCallback(() => {
     setData(INITIAL_PLANNER_DATA);
     setStep(0);
+    setIntroAccepted(false);
     try {
       window.sessionStorage.removeItem(SESSION_STORAGE_KEY);
     } catch (err) {
@@ -152,10 +162,12 @@ export function useDatePlanner(): UseDatePlannerReturn {
   }, []);
 
   return {
+    introAccepted,
     step,
     data,
     isHydrated,
     canProceed: canProceed(),
+    acceptIntro,
     next,
     back,
     goToStep,
