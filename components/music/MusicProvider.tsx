@@ -33,6 +33,7 @@ export const MusicProvider: React.FC<{ children: React.ReactNode }> = ({ childre
   const [hasUserStarted, setHasUserStarted] = useState<boolean>(false);
 
   // Restore volume and mute preferences from localStorage
+  /* eslint-disable react-hooks/set-state-in-effect -- browser-only preferences are restored after mount to keep SSR markup stable */
   useEffect(() => {
     try {
       const savedMuted = window.localStorage.getItem(STORAGE_KEY_MUSIC_MUTED);
@@ -53,6 +54,7 @@ export const MusicProvider: React.FC<{ children: React.ReactNode }> = ({ childre
       }
     }
   }, []);
+  /* eslint-enable react-hooks/set-state-in-effect */
 
   // Update HTMLAudioElement volume & muted properties
   useEffect(() => {
