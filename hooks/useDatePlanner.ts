@@ -36,6 +36,7 @@ export function useDatePlanner(): UseDatePlannerReturn {
   const [isHydrated, setIsHydrated] = useState(false);
 
   // Restore state from sessionStorage on client mount & check URL prefill
+  /* eslint-disable react-hooks/set-state-in-effect -- persisted session is read after mount to keep SSR markup stable */
   useEffect(() => {
     try {
       // 1. Check for URL prefill e.g. ?name=Iqbal
@@ -69,6 +70,7 @@ export function useDatePlanner(): UseDatePlannerReturn {
       setIsHydrated(true);
     }
   }, []);
+  /* eslint-enable react-hooks/set-state-in-effect */
 
   // Persist state to sessionStorage whenever introAccepted, step or data updates
   useEffect(() => {

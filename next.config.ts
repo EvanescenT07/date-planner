@@ -4,6 +4,9 @@ const nextConfig: NextConfig = {
   reactStrictMode: true,
   poweredByHeader: false,
   transpilePackages: ["framer-motion"],
+  experimental: {
+    agentUpgrade: "security",
+  },
   async headers() {
     return [
       {
